@@ -1,5 +1,5 @@
 // middleware tests
-describe('Middleware spec', function () {
+describe('Image resize middleware spec', function () {
   // fetched params from url
   // image source name
   // corresponding image should exist on the server

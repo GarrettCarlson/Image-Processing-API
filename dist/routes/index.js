@@ -4,11 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const index_1 = __importDefault(require("./routes/index"));
-const app = (0, express_1.default)();
-const port = 3000;
-app.use('/api', index_1.default);
-// start the express server
-app.listen(port, () => {
-    console.log(`Server started at http://localhost:${port}`);
+const resizer_1 = __importDefault(require("../utils/resizer"));
+const routes = express_1.default.Router();
+routes.use(express_1.default.static('api'));
+routes.get('/', resizer_1.default, (req, res) => {
+    console.log('Main api route was used');
 });
+exports.default = routes;
