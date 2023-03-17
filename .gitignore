@@ -1,0 +1,3 @@
+# ignore image files
+api/**/*.jpg
+api/**/*.png
