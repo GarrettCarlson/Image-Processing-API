@@ -9,7 +9,7 @@ const resizeImage_1 = __importDefault(require("./resizeImage"));
 const path_1 = __importDefault(require("path"));
 const fullSizeImagePath = path_1.default.resolve('./api/full') + '\\';
 const resizedImagePath = path_1.default.resolve('./api/thumb') + '\\';
-const resizer = (req, res, next) => {
+const resizer = (req, res) => {
     //console.log(fullSizeImagePath, resizedImagePath);
     // handle image resizing functions
     const originalFileName = req.query.filename;
@@ -23,25 +23,24 @@ const resizer = (req, res, next) => {
     // Send error if the file does not exist
     if (!fileExist) {
         res.send(`Error: Image requested ${originalFileName} does not exist.`);
+        return;
     }
     // display the resized image if it has already been created
-    else if (newFileExist) {
+    if (newFileExist) {
         console.log(resizedFileName + ' was already on the server.');
         res.send(`<img src="/api/thumb/${resizedFileName}">`);
+        return;
     }
     // otherwise, try to resize the image
-    else {
-        console.log('Attempting to resize ' + originalFileName + '...');
-        (0, resizeImage_1.default)(originalFileName, height, width)
-            .then(() => {
-            // display the new image if there are no errors...
-            res.send(`<img src="/api/thumb/${resizedFileName}">`);
-        })
-            .catch((err) => {
-            // and pass the error back if there is a problem resizing the file
-            res.send(`Error processing ${originalFileName}: ${err}`);
-        });
-    }
-    next();
+    console.log('Attempting to resize ' + originalFileName + '...');
+    (0, resizeImage_1.default)(originalFileName, height, width)
+        .then(() => {
+        // display the new image if there are no errors...
+        res.send(`<img src="/api/thumb/${resizedFileName}">`);
+    })
+        .catch((err) => {
+        // and pass the error back if there is a problem resizing the file
+        res.send(`Error processing ${originalFileName}: ${err}`);
+    });
 };
 exports.default = resizer;
