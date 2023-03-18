@@ -6,10 +6,10 @@ Image Processing API project for Udacity.
 2. Use `npm run build` to build code.
 3. Use `npm run test` to run tests.
 4. Use `node .\dist\` to start the server.
-5. Connect to the server at http://localhost:3000/api/images?filename=test.png&height=200&width=200 to view a resized image.
+5. Connect to the server at http://localhost:3000/api/images?filename=test.jpg&height=200&width=200 to view a resized image.
 6. Refresh the page to observe caching behavior.
-7. Connect to the server at http://localhost:3000/api/images?filename=dne.png&height=200&width=200 to view the error returned when an image does not exist.
-8. Connect to the server at http://localhost:3000/api/images?filename=invalid.png&height=200&width=200 to view the error returned when an image fails to process.
+7. Connect to the server at http://localhost:3000/api/images?filename=dne.jpg&height=200&width=200 to view the error returned when an image does not exist.
+8. Connect to the server at http://localhost:3000/api/images?filename=invalid.jpg&height=200&width=200 to view the error returned when an image fails to process.
 
 ## Rubric
 ### Setup and Architecture
