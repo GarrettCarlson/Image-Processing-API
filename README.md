@@ -27,14 +27,14 @@ Image Processing API project for Udacity.
 * Start script should run without error ✅
 * Provided endpoint should open in the browser with status 200 ✅
 
-#### Folow middleware documentation to use middleware to create an API ❌
+#### Folow middleware documentation to use middleware to create an API ✅
 * Accessing the provided URL with image information should successfully resize an image and save it to disk on first access, then pull from disk on subsequent access attempts. ✅
 * An error message should be provided to the user when an image has failed to process or does not exist. ✅
 
 ### Code Quality
-#### Write relevant unit tests with Jasmine and SuperTest to improve code quality and refactoring ❌
-* Test script runs and all tests created pass. ❌
-* There is at least 1 test per endpoint and at least one test for image processing. ❌
+#### Write relevant unit tests with Jasmine and SuperTest to improve code quality and refactoring ✅
+* Test script runs and all tests created pass. ✅
+* There is at least 1 test per endpoint and at least one test for image processing. ✅
 
 #### Utilize TypeScript to avoid errors and improve maintainability ✅
 * All code in the SRC folder should use the .ts filetype. ✅
