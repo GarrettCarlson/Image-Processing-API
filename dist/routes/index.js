@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const resizer_1 = __importDefault(require("../utils/resizer"));
 const routes = express_1.default.Router();
 routes.use(express_1.default.static('api'));
-routes.get('/', resizer_1.default, (req, res) => {
+routes.get('/images', resizer_1.default, () => {
     console.log('Main api route was used');
 });
 exports.default = routes;
