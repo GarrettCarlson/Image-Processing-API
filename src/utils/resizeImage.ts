@@ -1,5 +1,6 @@
 import sharp from 'sharp';
 import genFileName from './newImageName';
+import fs from 'fs';
 
 const fullDir = './api/full/';
 
@@ -12,6 +13,9 @@ const resizeImage = async (
   const newFileDir = './api/thumb/';
 
   try {
+    if (!fs.existsSync(newFileDir)) {
+      fs.mkdirSync(newFileDir);
+    }
     await sharp(fullDir + fileName)
       .resize({
         width: newWidth,
