@@ -11,10 +11,49 @@ const fullSizeImagePath = path_1.default.resolve('./api/full') + '\\';
 const resizedImagePath = path_1.default.resolve('./api/thumb') + '\\';
 const resizer = (req, res) => {
     //console.log(fullSizeImagePath, resizedImagePath);
-    // handle image resizing functions
+    // validate the inputs in the req.query
+    if (req.query.filename === undefined) {
+        res.send(`Error: Filename not provided by user.`);
+        return;
+    }
+    if (req.query.height === undefined) {
+        res.send(`Error: New image height not provided by user.`);
+        return;
+    }
+    if (req.query.width === undefined) {
+        res.send(`Error: New image width not provided by user.`);
+        return;
+    }
+    // assign the inputs from the req.query
     const originalFileName = req.query.filename;
     const height = parseInt(req.query.height);
     const width = parseInt(req.query.width);
+    // filename and extension validation
+    const fileHasExt = originalFileName.split('.').length === 2 ? true : false;
+    if (!fileHasExt) {
+        res.send(`Error: Image file must be a JPEG, PNG, WebP, GIF, AVIF, or TIFF.`);
+        return;
+    }
+    const fileExtVal = originalFileName.split('.')[1].toLowerCase();
+    if (!(fileExtVal === 'jpg' ||
+        fileExtVal === 'jpeg' ||
+        fileExtVal === 'png' ||
+        fileExtVal === 'webp' ||
+        fileExtVal === 'gif' ||
+        fileExtVal === 'avif' ||
+        fileExtVal === 'tiff')) {
+        res.send(`Error: Image file must be a JPEG, PNG, WebP, GIF, AVIF, or TIFF.`);
+        return;
+    }
+    // width and height validation
+    if (isNaN(height) || height <= 0) {
+        res.send(`Error: New image height must be a positive integer.`);
+        return;
+    }
+    if (isNaN(width) || width <= 0) {
+        res.send(`Error: New image width must be a positive integer.`);
+        return;
+    }
     // check if the file requested exists on the server
     const fileExist = (0, checkFile_1.default)(originalFileName, fullSizeImagePath);
     // check if the file has already been resized to the requested dimensions
